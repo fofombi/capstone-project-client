@@ -9,6 +9,12 @@ import SignIn from '../SignIn/SignIn'
 import SignOut from '../SignOut/SignOut'
 import ChangePassword from '../ChangePassword/ChangePassword'
 
+import Patients from '../Patients/Patients'
+import Patient from '../Patients/Patient'
+import CreatePatient from '../Patients/CreatePatient'
+import UpdatePatient from '../Patients/UpdatePatient'
+// import EditPatient from '../Patients/EditPatient'
+
 class App extends Component {
   constructor () {
     super()
@@ -42,12 +48,42 @@ class App extends Component {
           />
         ))}
         <main className="container">
+          <AuthenticatedRoute exact path='/patients' component={Patients}
+            user={user} />
           <Route path='/sign-up' render={() => (
             <SignUp alert={this.alert} setUser={this.setUser} />
           )} />
           <Route path='/sign-in' render={() => (
             <SignIn alert={this.alert} setUser={this.setUser} />
           )} />
+          <Route
+            exact
+            path='/patients/:id'
+            render={() => (
+              <Patient user={user} />
+            )}
+          />
+          <AuthenticatedRoute
+            user={user}
+            path="/CreatePatient"
+            render={() => (
+              <CreatePatient
+                user={user}
+                alert={this.alert}
+              />
+            )}
+          />
+          <AuthenticatedRoute
+            user={user}
+            exact
+            path="/patients/:id/edit"
+            render={() => (
+              <UpdatePatient
+                user={user}
+                alert={this.alert}
+              />
+            )}
+          />
           <AuthenticatedRoute user={user} path='/sign-out' render={() => (
             <SignOut alert={this.alert} clearUser={this.clearUser} user={user} />
           )} />
