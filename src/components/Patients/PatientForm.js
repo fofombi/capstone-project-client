@@ -4,12 +4,13 @@ import Button from 'react-bootstrap/Button'
 
 const PatientForm = ({ patient, handleChange, handleSubmit }) => (
   <Form onSubmit={handleSubmit}>
+
     <Form.Group controlId="mrn">
       <Form.Label>Patient Medical Record Number</Form.Label>
       <Form.Control
         type="integer"
         placeholder="Enter Patient Medical Record Number"
-        value={patient.MRN}
+        value={patient.mrn}
         onChange={handleChange}
         name="mrn"
         required

@@ -34,8 +34,9 @@ class Patients extends Component {
     const patientsJsx = this.state.patients.map(patient => (
       <ListGroup.Item key={patient._id}>
         <Link to={`/patients/${patient._id}`} >{patient.mrn}</Link>
-        <Link to={`/patients/${patient._id}`} >{patient.lastName}</Link>
       </ListGroup.Item>
+      // <Link to={`/patients/${patient._id}`} >{patient.lastName}</Link>
+
     ))
 
     if (this.state.isLoading) {

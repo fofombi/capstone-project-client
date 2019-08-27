@@ -13,7 +13,7 @@ import Patients from '../Patients/Patients'
 import Patient from '../Patients/Patient'
 import CreatePatient from '../Patients/CreatePatient'
 import UpdatePatient from '../Patients/UpdatePatient'
-// import EditPatient from '../Patients/EditPatient'
+import DeletePatient from '../Patients/DeletePatient'
 
 class App extends Component {
   constructor () {
@@ -48,7 +48,7 @@ class App extends Component {
           />
         ))}
         <main className="container">
-          <AuthenticatedRoute exact path='/patients' component={Patients}
+          <Route exact path='/patients' component={Patients}
             user={user} />
           <Route path='/sign-up' render={() => (
             <SignUp alert={this.alert} setUser={this.setUser} />
@@ -56,16 +56,16 @@ class App extends Component {
           <Route path='/sign-in' render={() => (
             <SignIn alert={this.alert} setUser={this.setUser} />
           )} />
+
           <Route
-            exact
-            path='/patients/:id'
+            exact path='/patients/:id'
             render={() => (
               <Patient user={user} />
             )}
           />
           <AuthenticatedRoute
             user={user}
-            path="/CreatePatient"
+            path="/Createpatient"
             render={() => (
               <CreatePatient
                 user={user}
@@ -79,6 +79,17 @@ class App extends Component {
             path="/patients/:id/edit"
             render={() => (
               <UpdatePatient
+                user={user}
+                alert={this.alert}
+              />
+            )}
+          />
+          <AuthenticatedRoute
+            user={user}
+            exact
+            path="/patients/:id/destroy"
+            render={() => (
+              <DeletePatient
                 user={user}
                 alert={this.alert}
               />

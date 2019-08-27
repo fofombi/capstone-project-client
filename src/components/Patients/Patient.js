@@ -11,9 +11,18 @@ class Patient extends Component {
   }
 
   async componentDidMount () {
-    console.log(this.props.user)
+    console.log(this.props.match.params)
     try {
-      const response = await axios(`${apiUrl}/patients/${this.props.match.params.id}`)
+      const response = await axios({
+        method: 'GET',
+        url: `${apiUrl}/patients/${this.props.match.params.id}`,
+        headers: {
+          'Authorization': `Bearer ${this.props.user.token}`
+        }
+      }
+      )
+
+      // /(`${apiUrl}/patients/${this.props.match.params.id}`)
 
       this.setState({
         patient: response.data.patient
@@ -30,7 +39,7 @@ class Patient extends Component {
       <div>
         { patient && (
           <Fragment>
-            <h1>{patient.mrn}</h1>
+            <h2>{patient.mrn}</h2>
             <h2>{patient.lastName}</h2>
             <h2>{patient.firstName}</h2>
             <h2>{patient.test}</h2>
@@ -38,7 +47,10 @@ class Patient extends Component {
             <h2>{patient.collectionDate}</h2>
             <h2>{patient.serviceDate}</h2>
             {(this.props.user && patient) && this.props.user._id === patient.owner
-              ? <Button href={`#patients/${patient._id}/edit`}>Edit patient</Button>
+              ? <Button href={`#patients/${patient._id}/edit`}>Edit Patient</Button>
+            // <btn onClick={this.deleteHandler.bind(this, i)} className="btn btn-danger btn-sm">Delete</btn>
+            // && <Button href={`#patients/${patient._id}/destroy`}>DELETE Patient</Button>
+
               : ''
             }
           </Fragment>

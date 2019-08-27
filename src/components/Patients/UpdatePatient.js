@@ -7,36 +7,58 @@ import PatientForm from './PatientForm'
 
 class UpdatePatient extends Component {
   state = {
-    patient: null
+    patient: null,
+    uddated: false
   }
-
-  componentDidMount () {
-    axios(`${apiUrl}/patients/${this.props.match.params.id}`)
-      .then(response => {
-        this.setState({ patient: response.data.patient })
-        console.log(response.data.patient)
-      })
-      .catch(() => this.props.alert({
-        heading: 'Error',
-        message: 'Something went wrong',
-        variant: 'danger'
-      }))
-  }
-
-  handleChange = event => {
-    // const updatedField = {
-    //   [event.target.name]: event.target.value
-    // }
-    // const editedpatient = Object.assign(this.state.patient, updatedField)
-    // this.setState({ patient: editedpatient })
-
-    this.setState({
-      patient: {
-        ...this.state.patient,
-        [event.target.name]: event.target.value
+  async componentDidMount () {
+    console.log(this.props.match.params)
+    try {
+      const response = await axios({
+        method: 'GET',
+        url: `${apiUrl}/patients/${this.props.match.params.id}`,
+        headers: {
+          'Authorization': `Bearer ${this.props.user.token}`
+        }
       }
-    })
+      )
+
+      // /(`${apiUrl}/patients/${this.props.match.params.id}`)
+
+      this.setState({
+        patient: response.data.patient
+      })
+    } catch (error) {
+      console.error(error)
+    }
   }
+
+  // componentDidMount () {
+  //   axios(`${apiUrl}/patients/${this.props.match.params.id}`)
+  //     .then(response => {
+  //       this.setState({ patient: response.data.patient })
+  //       console.log(response.data.patient)
+  //     })
+  //     .catch(() => this.props.alert({
+  //       heading: 'Error',
+  //       message: 'Something went wrong',
+  //       variant: 'danger'
+  //     }))
+  // }
+  //
+   handleChange = event => {
+     //   // const updatedField = {
+     //   //   [event.target.name]: event.target.value
+     //   // }
+     //   // const editedpatient = Object.assign(this.state.patient, updatedField)
+     //   // this.setState({ patient: editedpatient })
+     //
+     this.setState({
+       patient: {
+         ...this.state.patient,
+         [event.target.name]: event.target.value
+       }
+     })
+   }
 
   handleSubmit = event => {
     event.preventDefault()
