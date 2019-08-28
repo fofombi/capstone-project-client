@@ -14,6 +14,7 @@ import Patient from '../Patients/Patient'
 import CreatePatient from '../Patients/CreatePatient'
 import UpdatePatient from '../Patients/UpdatePatient'
 import DeletePatient from '../Patients/DeletePatient'
+import ShowPatient from '../Patients/ShowPatient'
 
 class App extends Component {
   constructor () {
@@ -90,6 +91,17 @@ class App extends Component {
             path="/patients/:id/destroy"
             render={() => (
               <DeletePatient
+                user={user}
+                alert={this.alert}
+              />
+            )}
+          />
+          <AuthenticatedRoute
+            user={user}
+            exact
+            path="/patients/:id/show"
+            render={() => (
+              <ShowPatient
                 user={user}
                 alert={this.alert}
               />

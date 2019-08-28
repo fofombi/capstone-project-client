@@ -8,7 +8,7 @@ import PatientForm from './PatientForm'
 class UpdatePatient extends Component {
   state = {
     patient: null,
-    uddated: false
+    updated: false
   }
   async componentDidMount () {
     console.log(this.props.match.params)

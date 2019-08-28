@@ -19,8 +19,14 @@ class Patients extends Component {
   async componentDidMount () {
     try {
       // await the response from API call
-      const response = await axios(`${apiUrl}/patients`)
-
+      const response = await axios({
+      //  method: 'GET',
+        url: `${apiUrl}/patients/${this.props.match.params.id}`,
+        headers: {
+          'Authorization': `Bearer ${this.props.user.token}`
+        }
+      }
+      )
       // do something with response
 
       // this.setState({ patients: response.data.patients })
