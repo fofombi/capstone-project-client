@@ -44,7 +44,7 @@ Frontend     | Backend    |
 
 # Wireframes
 Link to Wireframe: https://imgur.com/a/zk4t48w
- ![https://imgur.com/a/zk4t48w]
+<img src='https://imgur.com/a/zk4t48w'/>
 
 # ERD
 
