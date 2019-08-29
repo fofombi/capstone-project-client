@@ -1,7 +1,26 @@
 @import '~bootstrap/scss/bootstrap';
 
+.home-body {
+  background: url("https://i.imgur.com/1dCNg5v.jpg"), url("https://i.imgur.com/pJpvrxN.jpg")
+  center center repeat;
+    background-size: 2em;
+    webkit-background-size: cover;
+ -moz-background-size: cover;
+ -o-background-size: cover;
+ background-size: cover;
+ height: 100vh;
+ // background-size: 100vw 100vh;
+  background-attachment: fixed;
+ background-color: #cccccc;
+background-color: rgba(55, 23, 1, 0.5);
+  background-size: cover;
+    padding-top: 100px;
 
+}
 
+//  background-repeat: no-repeat;
+// background-image: url("img_tree.gif"), url("paper.gif");
+//   background-color: #cccccc;
 // <ImageBackground source={https://imgur.com/a/6N7wTAh} style={{width: '100%', height: '100%'}}>
 //   <Text>Inside</Text>
 // </ImageBackground>

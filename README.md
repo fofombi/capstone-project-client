@@ -1,8 +1,8 @@
 
 # Links
-Link to deployed site:
-Link to the API repository:
-Link to the deployed API:
+Link to deployed site: https://fofombi.github.io/capstone-project-client/
+Link to the API repository: https://github.com/fofombi/capstone-project-api
+Link to the deployed API: https://young-falls-92381.herokuapp.com/
 
 # Application Description
 Tech. PathLab app is a single-page application which allows users  (Technicians & Technologists) to search for Patients Pathology tests and  review them. Once signed up and authenticated, users can view Patients and create new patient entries. Users can search Patients from the database. The backend was built using Express.js and MongoDB. The front-end was built using React.js and Axios for http requests (the requests communicate with the back end and third-party API).
@@ -41,17 +41,30 @@ Frontend     | Backend    |
 
  The front end includes respective components for the main page, header with navigation, patient search, edit/create forms, and pages allowing to view collections/individual patient entries.
 
+ # Wireframes
+ Link to Wireframe: https://imgur.com/a/zk4t48w
 
-# Wireframes
-Link to Wireframe: https://imgur.com/a/zk4t48w
- ![https://imgur.com/a/zk4t48w]
+ ![image](https://i.imgur.com/8wEfro7.jpg))
 
-# ERD
 
-Link to ERD: https://imgur.com/a/QI6kVaZ
- ![https://imgur.com/a/QI6kVaZ]
+ # ERD
 
- #  Screenshot Of The App
+ Link to ERD: https://imgur.com/a/QI6kVaZ
+
+  ![image](https://i.imgur.com/aAUWrw1.jpg)
+
+  #  Screenshot Of The App
+  * Home Page
+ ![image](https://i.imgur.com/UdJamYz.png)
+
+ * Before Sign-up
+ ![image](https://i.imgur.com/XF0iu2T.png)
+
+ * Page with Single resource(patient)
+ ![image](https://i.imgur.com/1nZabHx.png)
+
+ * Page with multiple resources(patients)
+ ![image](https://i.imgur.com/FTN9KOd.png)
 
 
 # User Stories

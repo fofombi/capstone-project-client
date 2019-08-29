@@ -14,6 +14,8 @@ import Patient from '../Patients/Patient'
 import CreatePatient from '../Patients/CreatePatient'
 import UpdatePatient from '../Patients/UpdatePatient'
 
+import Home from '../Home/Home'
+
 class App extends Component {
   constructor () {
     super()
@@ -47,6 +49,7 @@ class App extends Component {
           />
         ))}
         <main className="container">
+          <Route exact path='/' render={ Home }/>
           <AuthenticatedRoute
             user={user}
             exact path="/patients"
