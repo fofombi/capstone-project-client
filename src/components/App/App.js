@@ -13,8 +13,6 @@ import Patients from '../Patients/Patients'
 import Patient from '../Patients/Patient'
 import CreatePatient from '../Patients/CreatePatient'
 import UpdatePatient from '../Patients/UpdatePatient'
-import DeletePatient from '../Patients/DeletePatient'
-import ShowPatient from '../Patients/ShowPatient'
 
 class App extends Component {
   constructor () {
@@ -49,8 +47,16 @@ class App extends Component {
           />
         ))}
         <main className="container">
-          <Route exact path='/patients' component={Patients}
-            user={user} />
+          <AuthenticatedRoute
+            user={user}
+            exact path="/patients"
+            render={() => (
+              <Patients
+                user={user}
+                alert={this.alert}
+              />
+            )}
+          />
           <Route path='/sign-up' render={() => (
             <SignUp alert={this.alert} setUser={this.setUser} />
           )} />
@@ -61,7 +67,9 @@ class App extends Component {
           <Route
             exact path='/patients/:id'
             render={() => (
-              <Patient user={user} />
+              <Patient user={user}
+                alert={this.alert}
+              />
             )}
           />
           <AuthenticatedRoute
@@ -85,28 +93,7 @@ class App extends Component {
               />
             )}
           />
-          <AuthenticatedRoute
-            user={user}
-            exact
-            path="/patients/:id/destroy"
-            render={() => (
-              <DeletePatient
-                user={user}
-                alert={this.alert}
-              />
-            )}
-          />
-          <AuthenticatedRoute
-            user={user}
-            exact
-            path="/patients/:id/show"
-            render={() => (
-              <ShowPatient
-                user={user}
-                alert={this.alert}
-              />
-            )}
-          />
+
           <AuthenticatedRoute user={user} path='/sign-out' render={() => (
             <SignOut alert={this.alert} clearUser={this.clearUser} user={user} />
           )} />

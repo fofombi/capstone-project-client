@@ -60,14 +60,14 @@ class Patient extends Component {
         'Authorization': `Bearer ${this.props.user.token}`
       }
     })
-      .then(this.setState({ deleted: true
-        // then(response => {
-        //   this.props.alert({
-        //     heading: 'Success!!!!',
-        //     message: 'You deleted a patient.',
-        //     variant: 'success'
-        // })
-      }))
+      .then(() => this.setState({ deleted: true }))
+      .then(response => {
+        this.props.alert({
+          heading: 'Success!!!!',
+          message: 'You deleted a patient.',
+          variant: 'success'
+        })
+      })
 
       .catch(console.error)
   }
@@ -77,10 +77,7 @@ class Patient extends Component {
     if (deleted) {
       return <Redirect to={
         {
-          pathname: '/patients',
-          state: {
-            msg: 'Patient successfully deleted! Yay.'
-          }
+          pathname: '/patients'
         }
       }/>
     }

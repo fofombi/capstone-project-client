@@ -11,7 +11,7 @@ class UpdatePatient extends Component {
     updated: false
   }
   async componentDidMount () {
-    console.log(this.props.match.params)
+    // console.log(this.props.match.params)
     try {
       const response = await axios({
         method: 'GET',
