@@ -68,7 +68,7 @@ const PatientForm = ({ patient, handleChange, handleSubmit }) => (
     <Form.Group controlId="collectionDate">
       <Form.Label>Date of Specimen Collection</Form.Label>
       <Form.Control
-        type="datetime-local"
+        type="text"
         placeholder="Enter Date of Specimen Collection"
         value={patient.collectionDate}
         onChange={handleChange}
@@ -80,7 +80,7 @@ const PatientForm = ({ patient, handleChange, handleSubmit }) => (
     <Form.Group controlId="serviceDate">
       <Form.Label>Date of Service</Form.Label>
       <Form.Control
-        type="datetime-local"
+        type="text"
         placeholder="Enter Date of Service"
         value={patient.serviceDate}
         onChange={handleChange}

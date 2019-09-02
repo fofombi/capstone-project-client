@@ -43,7 +43,7 @@ class Patients extends Component {
 
     const token = this.props.user.token
     axios({
-      method: 'POST',
+      method: 'GET',
       url: `${apiUrl}/patients`,
       headers: {
         'Authorization': `Bearer ${token}`
@@ -58,7 +58,7 @@ class Patients extends Component {
           message: 'Here are the patients.',
           variant: 'success'
         })
-        this.props.history.push(`/patients/${response.data.patient._id}`)
+        this.props.history.push(`/patients/${response.data.patients}`)
       })
     //  .catch(console.error)
       .catch(() => {
