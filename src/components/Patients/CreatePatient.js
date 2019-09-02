@@ -66,6 +66,7 @@ class CreatePatient extends Component {
   }
 
   render () {
+    // console.log(this.state.patient.collectionDate)
     return (
       <PatientForm
         patient={this.state.patient}

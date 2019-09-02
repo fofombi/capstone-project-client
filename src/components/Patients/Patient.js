@@ -90,6 +90,14 @@ class Patient extends Component {
         }
       }/>
     }
+
+    // patient && console.log(typeof patient.serviceDate)
+
+    const convertDate = function (rawDate) {
+      const date = new Date(rawDate)
+      return date.getUTCMonth() + ' - ' + date.getUTCDate() + ' - ' + date.getUTCFullYear()
+    }
+
     return (
       <div>
         { patient && (
@@ -99,8 +107,8 @@ class Patient extends Component {
             <h2>{patient.firstName}</h2>
             <h2>{patient.test}</h2>
             <h2>{patient.grossDescription}</h2>
-            <h2>{patient.collectionDate}</h2>
-            <h2>{patient.serviceDate}</h2>
+            <h2>{convertDate(patient.collectionDate)}</h2>
+            <h2>{convertDate(patient.serviceDate)}</h2>
             {(this.props.user && patient) && this.props.user._id === patient.owner
               ? (
                 <Fragment>

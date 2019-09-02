@@ -30,44 +30,19 @@ class Patients extends Component {
 
       // this.setState({ patients: response.data.patients })
       this.setState({ patients: response.data.patients, isLoading: false })
+      this.props.alert({
+        heading: 'Success!!!!',
+        message: 'Here are all patients.',
+        variant: 'success'
+      })
     } catch (error) {
+      // console.error(error)
       this.props.alert({
         heading: 'Failure!!!!',
         message: 'Failure to do action',
         variant: 'warning'
       })
     }
-  }
-  handleSubmit = event => {
-    event.preventDefault()
-
-    const token = this.props.user.token
-    axios({
-      method: 'GET',
-      url: `${apiUrl}/patients`,
-      headers: {
-        'Authorization': `Bearer ${token}`
-      },
-      data: {
-        patient: this.state.patient
-      }
-    })
-      .then(response => {
-        this.props.alert({
-          heading: 'Success!!!!',
-          message: 'Here are the patients.',
-          variant: 'success'
-        })
-        this.props.history.push(`/patients/${response.data.patients}`)
-      })
-    //  .catch(console.error)
-      .catch(() => {
-        this.props.alert({
-          heading: 'Failure!!!!',
-          message: 'You fail to show  patients.',
-          variant: 'warning'
-        })
-      })
   }
 
   render () {
