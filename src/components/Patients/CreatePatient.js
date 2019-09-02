@@ -35,11 +35,13 @@ class CreatePatient extends Component {
 
   handleSubmit = event => {
     event.preventDefault()
+
+    const token = this.props.user.token
     axios({
       method: 'POST',
       url: `${apiUrl}/patients`,
       headers: {
-        'Authorization': `Bearer ${this.props.user.token}`
+        'Authorization': `Bearer ${token}`
       },
       data: {
         patient: this.state.patient
@@ -53,7 +55,14 @@ class CreatePatient extends Component {
         })
         this.props.history.push(`/patients/${response.data.patient._id}`)
       })
-      .catch(console.error)
+    //  .catch(console.error)
+      .catch(() => {
+        this.props.alert({
+          heading: 'Failure!!!!',
+          message: 'You fail to create a patient.',
+          variant: 'warning'
+        })
+      })
   }
 
   render () {

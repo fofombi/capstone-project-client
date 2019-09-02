@@ -20,10 +20,8 @@ class Patients extends Component {
     try {
       // await the response from API call
       const response = await axios({
-
-        //  method: 'GET',
         url: `${apiUrl}/patients/`,
-        method: 'GET',
+        // method: 'GET',
         headers: {
           'Authorization': `Bearer ${this.props.user.token}`
         }
@@ -33,29 +31,46 @@ class Patients extends Component {
       // this.setState({ patients: response.data.patients })
       this.setState({ patients: response.data.patients, isLoading: false })
     } catch (error) {
-      console.error(error)
+      this.props.alert({
+        heading: 'Failure!!!!',
+        message: 'Failure to do action',
+        variant: 'warning'
+      })
     }
+  }
+  handleSubmit = event => {
+    event.preventDefault()
+
+    const token = this.props.user.token
+    axios({
+      method: 'POST',
+      url: `${apiUrl}/patients`,
+      headers: {
+        'Authorization': `Bearer ${token}`
+      },
+      data: {
+        patient: this.state.patient
+      }
+    })
+      .then(response => {
+        this.props.alert({
+          heading: 'Success!!!!',
+          message: 'Here are the patients.',
+          variant: 'success'
+        })
+        this.props.history.push(`/patients/${response.data.patient._id}`)
+      })
+    //  .catch(console.error)
+      .catch(() => {
+        this.props.alert({
+          heading: 'Failure!!!!',
+          message: 'You fail to show  patients.',
+          variant: 'warning'
+        })
+      })
   }
 
   render () {
-    //     let patientsJsx
-    //     if (this.state.patients.length === 0) {
-    //       patientsJsx = (
-    //         <ListGroup.Item className="text-center list">No patient  foun! </ListGroup.Item>
-    //       )
-    //     } else {
-    //       patientsJsx = this.state.patients.map(patient => (
-    //         <ListGroup.Item className='text-center list' key={patient._id}>
-    //           <Link to={`/patients/${patient._id}`}>{patient.title}</Link></ListGroup.Item>
-    //       ))
-    //     }
-    //     return (
-    //       <ListGroup>
-    //         { patientsJsx }
-    //       </ListGroup>
-    //     )
-    //   }
-    // }
     const patientsJsx = this.state.patients.map(patient => (
 
       <ListGroup.Item key={patient._id}>

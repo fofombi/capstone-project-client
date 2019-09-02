@@ -6,16 +6,17 @@ import apiUrl from '../../apiConfig'
 import Button from 'react-bootstrap/Button'
 
 class Patient extends Component {
-  state = {
-    patient: null,
-    deleted: false
+  constructor () {
+    super()
+    this.state = {
+      patient: null,
+      deleted: false
+    }
   }
-
   async componentDidMount () {
     // console.log(this.props.match.params)
     try {
       const response = await axios({
-        method: 'GET',
         url: `${apiUrl}/patients/${this.props.match.params.id}`,
         headers: {
           'Authorization': `Bearer ${this.props.user.token}`
@@ -29,7 +30,11 @@ class Patient extends Component {
         patient: response.data.patient
       })
     } catch (error) {
-      console.error(error)
+      this.props.alert({
+        heading: 'Failure!!!!',
+        message: 'Failure to do action',
+        variant: 'warning'
+      })
     }
   }
   // ----DELETE....
@@ -47,7 +52,7 @@ class Patient extends Component {
     //     variant: 'success'
     //   })
     } catch (error) {
-      console.error(error)
+    //  console.error(error)
     }
   }
 
@@ -69,7 +74,11 @@ class Patient extends Component {
         })
       })
 
-      .catch(console.error)
+      .catch(() => this.props.alert({
+        heading: 'Error',
+        message: 'Something went wrong',
+        variant: 'danger'
+      }))
   }
 
   render () {

@@ -14,7 +14,6 @@ class UpdatePatient extends Component {
     // console.log(this.props.match.params)
     try {
       const response = await axios({
-        method: 'GET',
         url: `${apiUrl}/patients/${this.props.match.params.id}`,
         headers: {
           'Authorization': `Bearer ${this.props.user.token}`
@@ -28,7 +27,11 @@ class UpdatePatient extends Component {
         patient: response.data.patient
       })
     } catch (error) {
-      console.error(error)
+      this.props.alert({
+        heading: 'Failure!!!!',
+        message: 'Failure to do action',
+        variant: 'warning'
+      })
     }
   }
 
@@ -80,7 +83,12 @@ class UpdatePatient extends Component {
         })
         this.props.history.push(`/patients/${this.state.patient._id}`)
       })
-      .catch(console.error)
+      // .catch(console.error)
+      .catch(() => this.props.alert({
+        heading: 'Error',
+        message: 'Something went wrong',
+        variant: 'danger'
+      }))
   }
 
   render () {
